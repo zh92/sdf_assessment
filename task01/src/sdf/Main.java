@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         
-        Path cithPath = Paths.get("road_not_taken.txt");
+        Path cithPath = Paths.get("cat_in_the_hat_test.txt");
         File cith = cithPath.toFile();
 
         if (!cith.exists()) {
@@ -25,10 +25,10 @@ public class Main {
         FileReader fr = new FileReader(cith);
         BufferedReader br = new BufferedReader(fr);
 
-        //Read file line by line
         String line;
         String[] columns;
 
+        //Read file line by line
         while (null != (line = br.readLine())) {
             line = line.trim();
             if (line.length() <= 0) {
@@ -36,10 +36,11 @@ public class Main {
             }
 
             //Remove punctuation
-            
             for (int i = 0; i < Constants.PUNCTUATIONS.length; i++) {
                 columns = line.split(Constants.PUNCTUATIONS[i]);
             }
+
+            WordCount word = WordCount.getWordCount();
         }
 
         br.close();

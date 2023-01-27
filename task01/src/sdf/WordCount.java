@@ -17,8 +17,10 @@ public class WordCount {
         this.wordCount += wordCount;
     }
 
-    public void termFrequency (int wordCount, int totalWordCount) {
-        Double termfrequency = (double)(wordCount / totalWordCount);
+    public double termFrequency (int wordCount, int totalWordCount) {
+        Double tf = 0.000;
+        tf = (double)(wordCount / totalWordCount);
+        return tf;
     }
 
     
