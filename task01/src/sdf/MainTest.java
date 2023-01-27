@@ -55,13 +55,12 @@ public class MainTest {
             }
             System.out.println(wordMap.toString());
 
-            br.close();
-            fr.close();
-
-            // Print out results
-            System.out.println("Top 10 words with highest frequency: ");
-            System.out.println(wordMap.values());
-
         }
+        br.close();
+        fr.close();
+
+         // Print out results
+         System.out.println("Top 10 words with highest frequency: ");
+         System.out.println(wordMap.values());
     }
 }
