@@ -17,6 +17,10 @@ public class WordCount {
     public WordCount(String word) {
         this.word = word;
     }
+    
+    public WordCount(int wordCount) {
+        this.wordCount = wordCount;
+    }
     public void add() {
         this.wordCount += wordCount;
     }

@@ -11,10 +11,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class MainTest {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-
+        
         Path cithPath = Paths.get("cat_in_the_hat_test.txt");
         File cith = cithPath.toFile();
 
@@ -28,11 +28,12 @@ public class Main {
 
         String line;
         String[] columns;
-        Map<String, WordCount> wordMap = new HashMap<>();
+        Map<String, Integer> wordMap = new HashMap<>();
 
         // Read file line by line
         while (null != (line = br.readLine())) {
             line = line.trim();
+            line = line.toLowerCase();
 
             // Remove all punctuations
             for (int i = 0; i < Constants.PUNCTUATIONS.length - 1; i++) {
@@ -45,28 +46,22 @@ public class Main {
             columns = line.split(" ");
             System.out.println(Arrays.toString(columns));
 
-            // Add to Hashmap word and count
             for (String s : columns) {
-                WordCount word = wordMap.get(s);
-                if (word == null) {
-                    word = new WordCount(s);
-                    wordMap.put(s, word);
+                if (wordMap.containsKey(s)) {
+                    wordMap.computeIfPresent(s, (w, c) -> Integer.valueOf(c.intValue() + 1));
+                } else {
+                    wordMap.computeIfAbsent(s, (w) -> Integer.valueOf(1));
                 }
-                word.add();
             }
-        }
+            System.out.println(wordMap.toString());
+
             br.close();
             fr.close();
-        // Print out results
-        System.out.println("Top 10 words with highest frequency: ");
-        for (String cat : wordMap.keySet()) {
-            WordCount data = wordMap.get(cat);
-            System.out.printf("%s\n", cat);
-            System.out.printf("%i\n", data.getWordCount());
-            // for (int i = 1; i < 11; i++) {
-            // System.out.printf("%s. \n", i);
 
-            // }
+            // Print out results
+            System.out.println("Top 10 words with highest frequency: ");
+            System.out.println(wordMap.values());
+
         }
     }
 }
