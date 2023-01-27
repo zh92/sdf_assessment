@@ -4,7 +4,8 @@ public class WordCount {
     
     private int wordCount = 0;
     private int totalWordCount = 0;
-    private String word = "";
+    private String word;
+    private Double termFrequency = 0.00;
 
     public int getWordCount() {return wordCount;}
     public void setWordCount(int wordCount) {this.wordCount = wordCount;}
@@ -13,16 +14,15 @@ public class WordCount {
     public String getWord() {return word;}
     public void setWord(String word) {this.word = word;}
 
-    public void add(int wordCount) {
+    public WordCount(String word) {
+        this.word = word;
+    }
+    public void add() {
         this.wordCount += wordCount;
     }
 
-    public double termFrequency (int wordCount, int totalWordCount) {
-        Double tf = 0.000;
-        tf = (double)(wordCount / totalWordCount);
-        return tf;
+    public double calculateTermFrequency (int wordCount, int totalWordCount) {
+        termFrequency = (double)(wordCount / totalWordCount);
+        return termFrequency;
     }
-
-    
-
 }
